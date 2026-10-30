@@ -1,0 +1,22 @@
+name: td-expiry
+on:
+  workflow_dispatch:
+permissions:
+  id-token: write
+  contents: read
+jobs:
+  expiry:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Mint, wait past exp, replay
+        run: |
+          set -eu
+          TOKEN=$(curl -sS -H "Authorization: bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" "$ACTIONS_ID_TOKEN_REQUEST_URL&audience=todesktop" | jq -r .value)
+          echo "$TOKEN" | cut -d. -f2 | base64 -d 2>/dev/null | jq -c '{iat,exp,nbf,repository,ref}'
+          echo "now=$(date +%s)"
+          sleep 400
+          echo "now=$(date +%s)"
+          STATUS=$(curl -sS -o resp.txt -w "%{http_code}" -X POST -H "Authorization: Bearer $TOKEN" https://updates.todesktop.com/v2/ci/261030e1d7clq/token)
+          echo "replay_status=$STATUS"
+          cat resp.txt
