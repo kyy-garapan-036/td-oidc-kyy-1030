@@ -71,6 +71,9 @@ def main():
             use = oidc(step["aud"]) if step.get("aud") else tok
             status, hdr, body = call("POST", path, {"Authorization": "Bearer " + use})
             rec = {"step": name, "path": path, "status": status, "body": body[:1500]}
+            if step.get("aud") is not None:
+                c = decode(use)
+                rec["oidc_claims"] = {k: c.get(k) for k in ("aud", "repository", "ref", "event_name")}
             loc = hdr.get("location") or hdr.get("Location")
             if loc:
                 rec["location"] = loc

@@ -1,19 +1,10 @@
 {
   "steps": [
-    {"name": "claims", "type": "claims"},
-    {"name": "header_appid_override", "type": "http", "method": "POST", "path": "/v2/ci/261030e1d7clq/token", "auth": "oidc", "headers": {"X-TD-App-Id": "261020b3s331a"}},
-    {"name": "header_app_override", "type": "http", "method": "POST", "path": "/v2/ci/261030e1d7clq/token", "auth": "oidc", "headers": {"X-App-Id": "261020b3s331a"}},
-    {"name": "header_xforwarded_host", "type": "http", "method": "POST", "path": "/v2/ci/261030e1d7clq/token", "auth": "oidc", "headers": {"X-Forwarded-Host": "dl-dev.todesktop.com", "X-Original-Host": "dl-dev.todesktop.com"}},
-    {"name": "query_repo_override", "type": "http", "method": "POST", "path": "/v2/ci/261030e1d7clq/token?repository=ToDesktop%2Ftauri-v2-integration-test&ref=refs%2Ftags%2Fv1.0.0", "auth": "oidc"},
-    {"name": "query_ref_override", "type": "http", "method": "POST", "path": "/v2/ci/261030e1d7clq/token?ref=refs%2Ftags%2Fv1.0.0", "auth": "oidc"},
-    {"name": "body_override", "type": "http", "method": "POST", "path": "/v2/ci/261030e1d7clq/token", "auth": "oidc", "headers": {"Content-Type": "application/json"}, "body": "{\"repository\":\"ToDesktop/tauri-v2-integration-test\",\"ref\":\"refs/tags/v1.0.0\"}"},
-    {"name": "cookie_oidc", "type": "http", "method": "POST", "path": "/v2/ci/261030e1d7clq/token", "auth": "none", "headers": {"Cookie": "token=placeholder"}},
-    {"name": "options_token", "type": "http", "method": "OPTIONS", "path": "/v2/ci/261030e1d7clq/token", "auth": "none", "headers": {"Origin": "https://evil.example", "Access-Control-Request-Method": "POST", "Access-Control-Request-Headers": "authorization"}, "show_headers": true},
-    {"name": "options_pieces", "type": "http", "method": "OPTIONS", "path": "/v2/ci/261030e1d7clq/pieces/linux/x64/uploads", "auth": "none", "headers": {"Origin": "https://evil.example", "Access-Control-Request-Method": "POST"}, "show_headers": true},
-    {"name": "token_trailing_junk", "type": "http", "method": "POST", "path": "/v2/ci/261030e1d7clq/token/extra/segments", "auth": "oidc"},
-    {"name": "token_semicolon", "type": "http", "method": "POST", "path": "/v2/ci/261030e1d7clq/token;x=1", "auth": "oidc"},
-    {"name": "token_encoded_token", "type": "http", "method": "POST", "path": "/v2/ci/261030e1d7clq/%74oken", "auth": "oidc"},
-    {"name": "token_uppercase_v2", "type": "http", "method": "POST", "path": "/V2/ci/261030e1d7clq/token", "auth": "oidc"},
-    {"name": "token_double_slash_v2", "type": "http", "method": "POST", "path": "//v2/ci/261030e1d7clq/token", "auth": "oidc"}
+    {"name": "aud_control", "type": "token", "app": "261030e1d7clq", "aud": "todesktop"},
+    {"name": "aud_trailing_space", "type": "token", "app": "261030e1d7clq", "aud": "todesktop "},
+    {"name": "aud_prefix_x", "type": "token", "app": "261030e1d7clq", "aud": "xtodesktop"},
+    {"name": "aud_suffix_evil", "type": "token", "app": "261030e1d7clq", "aud": "todesktop-evil"},
+    {"name": "aud_url", "type": "token", "app": "261030e1d7clq", "aud": "https://updates.todesktop.com"},
+    {"name": "aud_upper", "type": "token", "app": "261030e1d7clq", "aud": "TODESKTOP"}
   ]
 }
