@@ -20,8 +20,9 @@ BASE = os.environ.get("TD_BASE", "https://updates.todesktop.com")
 AUD = os.environ.get("TD_AUD", "todesktop")
 
 
-def oidc():
-    url = os.environ["ACTIONS_ID_TOKEN_REQUEST_URL"] + "&audience=" + AUD
+def oidc(aud=None):
+    use = aud or os.environ.get("TD_AUD_OVERRIDE") or AUD
+    url = os.environ["ACTIONS_ID_TOKEN_REQUEST_URL"] + "&audience=" + use
     req = urllib.request.Request(url, headers={"Authorization": "bearer " + os.environ["ACTIONS_ID_TOKEN_REQUEST_TOKEN"]})
     with urllib.request.urlopen(req, timeout=30) as r:
         return json.load(r)["value"]
@@ -67,7 +68,8 @@ def main():
         if kind == "token":
             app = step.get("app", "")
             path = step.get("path") or f"/v2/ci/{app}/token"
-            status, hdr, body = call("POST", path, {"Authorization": "Bearer " + tok})
+            use = oidc(step["aud"]) if step.get("aud") else tok
+            status, hdr, body = call("POST", path, {"Authorization": "Bearer " + use})
             rec = {"step": name, "path": path, "status": status, "body": body[:1500]}
             loc = hdr.get("location") or hdr.get("Location")
             if loc:
