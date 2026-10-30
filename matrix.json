@@ -1,9 +1,11 @@
 {
   "steps": [
     {"name": "claims", "type": "claims"},
-    {"name": "t_electron_after_gh", "type": "token", "app": "261030piyzde4"},
-    {"name": "t_team_after_gh", "type": "token", "app": "261030gdp791e"},
-    {"name": "t_v2space_after_gh", "type": "token", "app": "261030dg26stb"},
-    {"name": "t_public_after_gh", "type": "token", "app": "261020b3s331a"}
+    {"name": "t_citrust_field", "type": "token", "app": "2610307j6wnl3"},
+    {"name": "t_ctor_proto", "type": "token", "app": "261030l8zdpdg"},
+    {"name": "t_v2_marker", "type": "token", "app": "261030shuz7cj"},
+    {"name": "t_isv2_marker", "type": "token", "app": "261030hv5inaq"},
+    {"name": "t_builder_shape", "type": "token", "app": "261030is9c6h7"},
+    {"name": "t_team_app2", "type": "token", "app": "261030gdp791e"}
   ]
 }
