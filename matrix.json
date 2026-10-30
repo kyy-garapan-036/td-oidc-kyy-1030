@@ -1,0 +1,31 @@
+{
+  "steps": [
+    {"name": "claims", "type": "claims"},
+    {"name": "tok_A", "type": "token", "app": "261030e1d7clq"},
+    {"name": "tok_B_public", "type": "token", "app": "261020b3s331a"},
+
+    {"name": "A_trailing_slash", "type": "token", "path": "/v2/ci/261030e1d7clq/token/"},
+    {"name": "A_double_slash", "type": "token", "path": "/v2/ci//261030e1d7clq/token"},
+    {"name": "A_dot_segment", "type": "token", "path": "/v2/ci/./261030e1d7clq/token"},
+    {"name": "A_dotdot_to_B", "type": "token", "path": "/v2/ci/261030e1d7clq/../261020b3s331a/token"},
+    {"name": "A_pct2f_dotdot_B", "type": "token", "path": "/v2/ci/261030e1d7clq%2F..%2F261020b3s331a/token"},
+    {"name": "A_query_appId", "type": "token", "path": "/v2/ci/261030e1d7clq/token?appId=261020b3s331a"},
+    {"name": "A_upper", "type": "token", "path": "/v2/ci/261030E1D7CLQ/token"},
+    {"name": "A_space", "type": "token", "path": "/v2/ci/261030e1d7clq%20/token"},
+    {"name": "A_pct2e", "type": "token", "path": "/v2/ci/%2e/261030e1d7clq/token"},
+    {"name": "reserved_ci", "type": "token", "path": "/v2/ci/ci/token"},
+    {"name": "reserved_v2", "type": "token", "path": "/v2/ci/v2/token"},
+    {"name": "reserved_runtime", "type": "token", "path": "/v2/ci/runtime/token"},
+    {"name": "v1_path", "type": "token", "path": "/v1/ci/261030e1d7clq/token"},
+    {"name": "A_GET_method", "type": "http", "method": "GET", "path": "/v2/ci/261030e1d7clq/token", "auth": "oidc"},
+    {"name": "A_PUT_method", "type": "http", "method": "PUT", "path": "/v2/ci/261030e1d7clq/token", "auth": "oidc", "body": ""},
+
+    {"name": "ident_A_noauth", "type": "http", "method": "GET", "path": "/v2/ci/261030e1d7clq/identifiers"},
+    {"name": "ident_A", "type": "http", "method": "GET", "path": "/v2/ci/261030e1d7clq/identifiers", "auth": "token:tok_A"},
+    {"name": "ident_B_with_A", "type": "http", "method": "GET", "path": "/v2/ci/261020b3s331a/identifiers", "auth": "token:tok_A"},
+    {"name": "ident_A_with_B", "type": "http", "method": "GET", "path": "/v2/ci/261030e1d7clq/identifiers", "auth": "token:tok_B_public"},
+
+    {"name": "piece_B_invalid_with_A", "type": "http", "method": "PUT", "path": "/v2/ci/261020b3s331a/pieces/linux/x64", "auth": "token:tok_A", "headers": {"x-td-piece": "e30", "content-type": "application/octet-stream"}, "body": ""},
+    {"name": "piece_A_invalid", "type": "http", "method": "PUT", "path": "/v2/ci/261030e1d7clq/pieces/linux/x64", "auth": "token:tok_A", "headers": {"x-td-piece": "e30", "content-type": "application/octet-stream"}, "body": ""}
+  ]
+}
