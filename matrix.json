@@ -1,16 +1,9 @@
 {
   "steps": [
     {"name": "claims", "type": "claims"},
-    {"name": "t_v2space", "type": "token", "app": "261030dg26stb"},
-    {"name": "t_spacev2", "type": "token", "app": "261030nbncbvq"},
-    {"name": "t_upperV2", "type": "token", "app": "261030rbh8nl6"},
-    {"name": "t_int2", "type": "token", "app": "261030o006foy"},
-    {"name": "t_array", "type": "token", "app": "261030v9hwr9i"},
-    {"name": "t_object", "type": "token", "app": "26103047zuw4t"},
-    {"name": "t_electron", "type": "token", "app": "261030piyzde4"},
-    {"name": "t_control_aged", "type": "token", "app": "261030e1d7clq"},
-    {"name": "t_public", "type": "token", "app": "261020b3s331a"},
-    {"name": "t_nonexistent", "type": "token", "app": "aaaaaaaaaaaa"},
-    {"name": "ident_electron", "type": "http", "method": "GET", "path": "/v2/ci/261030piyzde4/identifiers", "auth": "oidc"}
+    {"name": "t_electron_after_gh", "type": "token", "app": "261030piyzde4"},
+    {"name": "t_team_after_gh", "type": "token", "app": "261030gdp791e"},
+    {"name": "t_v2space_after_gh", "type": "token", "app": "261030dg26stb"},
+    {"name": "t_public_after_gh", "type": "token", "app": "261020b3s331a"}
   ]
 }
